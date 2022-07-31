@@ -168,8 +168,7 @@ a {
 
 #svg1,
 #svg2,
-#svg3,
-#svg4 {
+#svg3 {
   width: 680px;
   height: 500px;
 }
@@ -190,7 +189,7 @@ line.annotation {
 }
 
 /* chart 2 3 */
-.chart2, .chart3, .chart4 {
+.chart2, .chart3 {
   margin-bottom: 60px;
 }
 .panel {
