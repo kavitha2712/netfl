@@ -17,7 +17,7 @@ charts.chart1 = function() {
   const file = 'data/opioid_crisis.json';
   d3.cachedJson(file, 'chart1', function(data) {
     data.forEach(function(d) {
-      d.date = parseDateTime(d.Total_Deaths_2019);
+      d.date = d.Total_Deaths_2019;
     });
     data = data.filter(d => d.date != null);
     const dataGroupedByRegion = Array.from(d3.group(data, d => d.US_Regions));
@@ -29,7 +29,8 @@ charts.chart1 = function() {
             numOriginals: item[1].length
           };
         }
-    ).sort((a, b) => (a.region > b.region) ? 1 : -1);
+    ).sort()
+//     .sort((a, b) => (a.region > b.region) ? 1 : -1);
 
     draw(finalData);
   });
