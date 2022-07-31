@@ -1,8 +1,8 @@
 charts.chart1 = function() {
   // initialise layout variables
   const margin = {top: 50, right: 20, bottom: 50, left: 60};
-  const width = 750;
-  const height = 350;
+  const width = 1250;
+  const height = 750;
 
   const parseDateTime = d3.timeParse("%B %d, %Y");
 
