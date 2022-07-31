@@ -21,10 +21,10 @@ function getDataAndDraw() {
 
     // get data
     const file = 'data/top_states.json';
-    d3.cachedJson(file, 'chart2', function(data) {
-//         data.forEach(function(d) {
-//             d.date = d.Total_Deaths_2019;
-//         });
+    d3.cachedJson(file, 'chart1', function(data) {
+        data.forEach(function(d) {
+            d.date = d.Total_Deaths_2019;
+        });
 //         data = data.filter(d => d.date != null);
 //         data.forEach(function(d) {
 //             d.year = d.date.getFullYear();
@@ -111,7 +111,7 @@ const paramsChart4 = [
     {
         id: "#checkbox-OH",
         statecd: "OH"
-    },
+    }
 ];
 function updateChart4Data() {
     getDataAndDraw();
