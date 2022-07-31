@@ -74,28 +74,16 @@ charts.chart1 = function() {
 
     // Features of the annotation
     const annotations = [
+      
       {
         note: {
-          label: "Comparatively lower deaths in west region"
+          label: "Highest average deaths by drug overdose"
         },
         connector: {
           end: "arrow"
         },
         type: d3.annotationLabel,
-        x: 325,
-        y: 35,
-        dx: 0,
-        dy: -25
-      },
-      {
-        note: {
-          label: "Peak deaths in this north east region"
-        },
-        connector: {
-          end: "arrow"
-        },
-        type: d3.annotationLabel,
-        x: 440,
+        x: 380,
         y: 100,
         dx: 0,
         dy: -25
