@@ -1,161 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Narrative Visualization</title>
-  <link rel="stylesheet" type="text/css" href="styles/fullpage.min.css"></style>
-  <link rel="stylesheet" type="text/css" href="styles/style.css"></style>
-</head>
-<body style="background-color:#F5EEF8;">
-
-  <div id="fullpage">
-    <div class="section">
-
-      <div class="slide" data-anchor="welcome">
-        <h1>Opioid Crisis in the United States (2017 - 2019)</h1>
-        <div class="intro">
-          <p>&nbsp;</p>
-        </div>
-      </div>
-
-      <div class="slide" data-anchor="dataset">
-        <h2> The    </h2>
-        <div class="intro">
-          <p>
-            The .
-          </p>
-          <p>
-            The 
-          </p>
-        </div>
-      </div>
-
-      <div class="slide" data-anchor="about">
-        <h2>About the Visualization</h2>
-        <div class="intro">
-          <p>
-            <strong>Interactive Slideshow</strong>
-            This narrative visualization follows an interactive slideshow structure to guide users through
-            various selected scenarios.
-          </p>
-          <p>
-            <strong>Scenes</strong>
-            Three scenes have been included in this visualization using consistent template and layout. User's can
-            navigate through the slideshow by clicking the arrows on the left/right sides of the screen, clicking the
-            navigation dots on top, or using the left/right buttons on a keyboard.
-          </p>
-          <p>
-            <strong>Annotations</strong>
-            Interesting trends are annotated in charts 1 and 2 using black font. These are meant to draw a user's attention
-            to areas of the chart that are important to the overarching question behind the visualization.
-          </p>
-          <p>
-            <strong>Parameters</strong>
-            Charts 2 and 3 include parameters that allow users to interact with the data via filtering. The scenes aim
-            to answer a simple question and these parameters allow users to explore data in more detail.
-          </p>
-          <p>
-            <strong>Triggers</strong>
-            Modifying the filters on charts 2 and 3 triggers changes to the parameters discussed above and updates the
-            charts to reflect the event.
-          </p>
-        </div>
-      </div>
-      
-      <div class="slide" data-anchor="chart1">
-        <h3>Average Deaths due to Opioid Overdose by Regions (US)</h3>
-        <h4> (2017 - 2019) </h4>
-        <div class="chart chart1">
-          <svg id="svg1"></svg>
-        </div>
-        <div class="intro">
-          <p>
-            More than XXXX people have died due to drug overdose in the US between 2017 - 2019. The following visualizations show the breakdown of deaths across different regions in the United States,
-            and the driving factors including the breakdown of the differnt drugs - Opioids - including synthetic and prescription opioids, heroin etc, which drugs contributed to the maximum deaths in each reagion/state.
-          </p>
-          <p>
-            This charts proves that 
-          </p>
-        </div>
-      </div>
-      <div class="slide" data-anchor="chart2">
-        <h3>Average </h3>
-        <div class="chart chart2">
-          <svg id="svg2"></svg>
-          <input type="checkbox" checked="checked" value="2014" id="Action" onClick="updateChart2Data()">Action</input>
-          <input type="checkbox" checked="checked" value="2015" id="Adventure" onClick="updateChart2Data()">Adventure</input>
-          <input type="checkbox" checked="checked" value="2016" id="Animation" onClick="updateChart2Data()">Animation</input>
-          <input type="checkbox" checked="checked" value="2017" id="Anime" onClick="updateChart2Data()">Anime</input>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <title>Narrative Visualization</title>
+      <link rel="stylesheet" type="text/css" href="styles/fullpage.min.css">
+      </style>
+      <link rel="stylesheet" type="text/css" href="styles/style.css">
+      </style>
+   </head>
+   <body style="background-color:#F5EEF8;">
+      <div id="fullpage">
+         <div class="section">
+            <div class="slide" data-anchor="welcome">
+               <h1>Opioid Crisis in the United States (2017 - 2019)</h1>
+               <div class="intro">
+                  <p>&nbsp;</p>
+               </div>
+            </div>
+            <div class="slide" data-anchor="dataset">
+               <h2> The    </h2>
+               <div class="intro">
+                  <p>
+                     The .
+                  </p>
+                  <p>
+                     The 
+                  </p>
+               </div>
+            </div>
+            <div class="slide" data-anchor="about">
+               <h2>About the Visualization</h2>
+               <div class="intro">
+                  <p>
+                     <strong>Interactive Slideshow</strong>
+                     This narrative visualization follows an interactive slideshow structure to guide users through
+                     various selected scenarios.
+                  </p>
+                  <p>
+                     <strong>Scenes</strong>
+                     Three scenes have been included in this visualization using consistent template and layout. User's can
+                     navigate through the slideshow by clicking the arrows on the left/right sides of the screen, clicking the
+                     navigation dots on top, or using the left/right buttons on a keyboard.
+                  </p>
+                  <p>
+                     <strong>Annotations</strong>
+                     Interesting trends are annotated in charts 1 and 2 using black font. These are meant to draw a user's attention
+                     to areas of the chart that are important to the overarching question behind the visualization.
+                  </p>
+                  <p>
+                     <strong>Parameters</strong>
+                     Charts 2 and 3 include parameters that allow users to interact with the data via filtering. The scenes aim
+                     to answer a simple question and these parameters allow users to explore data in more detail.
+                  </p>
+                  <p>
+                     <strong>Triggers</strong>
+                     Modifying the filters on charts 2 and 3 triggers changes to the parameters discussed above and updates the
+                     charts to reflect the event.
+                  </p>
+               </div>
+            </div>
+            <div class="slide" data-anchor="chart1">
+               <h3>Average Deaths due to Opioid Overdose by Regions (US)</h3>
+               <h4> (2017 - 2019) </h4>
+               <div class="chart chart1">
+                  <svg id="svg1"></svg>
+               </div>
+               <div class="intro">
+                  <p>
+                     More than XXXX people have died due to drug overdose in the US between 2017 - 2019. The following visualizations show the breakdown of deaths across different regions in the United States,
+                     and the driving factors including the breakdown of the differnt drugs - Opioids - including synthetic and prescription opioids, heroin etc, which drugs contributed to the maximum deaths in each reagion/state.
+                  </p>
+                  <p>
+                     This charts proves that 
+                  </p>
+               </div>
+            </div>
+            <div class="slide" data-anchor="chart2">
+               <h3>Average </h3>
+               <div class="chart chart2">
+                  <svg id="svg2"></svg>
+                  <input type="checkbox" checked="checked" value="2014" id="Action" onClick="updateChart2Data()">Action</input>
+                  <input type="checkbox" checked="checked" value="2015" id="Adventure" onClick="updateChart2Data()">Adventure</input>
+                  <input type="checkbox" checked="checked" value="2016" id="Animation" onClick="updateChart2Data()">Animation</input>
+                  <input type="checkbox" checked="checked" value="2017" id="Anime" onClick="updateChart2Data()">Anime</input>
+               </div>
+               <div class="intro">
+                  <p>
+                     This chart shows 
+                  </p>
+                  <p>
+                     This chart ultimately 
+                  </p>
+               </div>
+            </div>
+            <div class="slide" data-anchor="chart3">
+               <h3>Average </h3>
+               <div class="chart chart3">
+                  <svg id="svg3"></svg>
+                  <input type="checkbox" checked="checked" value="South" id="checkbox-South" onClick="updateChart3Data()">South</input>
+                  <input type="checkbox" checked="checked" value="West" id="checkbox-West" onClick="updateChart3Data()">West</input>
+                  <input type="checkbox" checked="checked" value="Midwest" id="checkbox-Midwest" onClick="updateChart3Data()">Midwest</input>
+                  <input type="checkbox" checked="checked" value="Northeast" id="checkbox-Northeast" onClick="updateChart3Data()">Northeast</input>
+               </div>
+               <div class="intro">
+                  <p>
+                     This chart 
+                  </p>
+                  <p>
+                     From the past 3 charts
+                  </p>
+               </div>
+            </div>
+            <div class="slide" data-anchor="source">
+               <h2>Sources</h2>
+               <div class="intro">
+                  <p>
+                     <strong>Dataset</strong><br/>
+                     <a href="https://www.cdc.gov/drugoverdose/deaths" target="_blank">
+                     https://www.cdc.gov/drugoverdose/deaths
+                     </a> 
+                  </p>
+                  <p>
+                     <strong>Fullpage.js (used for slideshow)</strong><br/>
+                     <a href="bhuhgjgfjg" target="_blank">
+                     </a>
+                  </p>
+                  <p>
+                     <strong>Source code</strong><br/>
+                     <a href="xxxxxx" target="_blank">
+                     </a>
+                  </p>
+               </div>
+            </div>
          </div>
-        <div class="intro">
-          <p>
-            This chart shows 
-          </p>
-          <p>
-            This chart ultimately 
-          </p>
-        </div>
       </div>
-      <div class="slide" data-anchor="chart3">
-        <h3>Average </h3>
-        <div class="chart chart3">
-          <svg id="svg3"></svg>
-          <input type="checkbox" checked="checked" value="South" id="checkbox-South" onClick="updateChart3Data()">South</input>
-          <input type="checkbox" checked="checked" value="West" id="checkbox-West" onClick="updateChart3Data()">West</input>
-          <input type="checkbox" checked="checked" value="Midwest" id="checkbox-Midwest" onClick="updateChart3Data()">Midwest</input>
-          <input type="checkbox" checked="checked" value="Northeast" id="checkbox-Northeast" onClick="updateChart3Data()">Northeast</input>
-         </div>
-        <div class="intro">
-          <p>
-            This chart 
-          </p>
-          <p>
-            From the past 3 charts
-          </p>
-        </div>
-      </div>
-      <div class="slide" data-anchor="source">
-        <h2>Sources</h2>
-        <div class="intro">
-          <p>
-            <strong>Dataset</strong><br/>
-            <a href="https://www.cdc.gov/drugoverdose/deaths" target="_blank">
-              https://www.cdc.gov/drugoverdose/deaths
-            </a> 
-          </p>
-          <p>
-            <strong>Fullpage.js (used for slideshow)</strong><br/>
-            <a href="bhuhgjgfjg" target="_blank">
-              
-            </a>
-          </p>
-          <p>
-            <strong>Source code</strong><br/>
-            <a href="xxxxxx" target="_blank">
-              
-            </a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-    
-
-  <script src="scripts/scrolloverflow.min.js"></script>
-  <script src="scripts/fullpage.min.js"></script>
-  <script src="scripts/d3.v4.min.js"></script>
-  <script src="https://d3js.org/d3-color.v1.min.js"></script>
-  <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
-  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/d3-array@3"></script>
-  <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
-  <script>
-    var charts = {};
-  </script>
-  <script src="scripts/chart1.js"></script>
-  <script src="scripts/chart2.js"></script>
-  <script src="scripts/chart3.js"></script>
-  <script src="scripts/main.js"></script>
-</body>
+      <script src="scripts/scrolloverflow.min.js"></script>
+      <script src="scripts/fullpage.min.js"></script>
+      <script src="scripts/d3.v4.min.js"></script>
+      <script src="https://d3js.org/d3-color.v1.min.js"></script>
+      <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+      <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/d3-array@3"></script>
+      <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+      <script>
+         var charts = {};
+      </script>
+      <script src="scripts/chart1.js"></script>
+      <script src="scripts/chart2.js"></script>
+      <script src="scripts/chart3.js"></script>
+      <script src="scripts/main.js"></script>
+   </body>
 </html>
