@@ -74,7 +74,7 @@ function drawChart3(data) {
 
     // Add Y axis
     const y = d3.scaleLinear()
-        .domain([0, 5300])
+        .domain([0, 6500])
         .range([heightChart3, 0]);
     svgChart3.append("g")
         .call(d3.axisLeft(y));
@@ -88,7 +88,7 @@ function drawChart3(data) {
         .attr("y", function(d) { return y(d.numDeaths); })
         .attr("width", x.bandwidth())
         .attr("height", function(d) { return heightChart3 - y(d.numDeaths); })
-        .attr("fill", "#965086");
+        .attr("fill", "#505996");
 }
 
 const paramsChart3 = [
