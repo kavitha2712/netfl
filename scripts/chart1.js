@@ -1,8 +1,8 @@
 charts.chart1 = function() {
   // initialise layout variables
   const margin = {top: 50, right: 20, bottom: 50, left: 60};
-  const width = 600;
-  const height = 400;
+  const width = 750;
+  const height = 350;
 
   const parseDateTime = d3.timeParse("%B %d, %Y");
 
@@ -14,7 +14,7 @@ charts.chart1 = function() {
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
   // get data
-  const file = 'data/NetflixOriginals.json';
+  const file = 'data/Opioid-crisis-data.json';
   d3.cachedJson(file, 'chart1', function(data) {
     data.forEach(function(d) {
       d.date = parseDateTime(d.Premiere);
@@ -64,7 +64,7 @@ charts.chart1 = function() {
         .attr("y", function(d) { return y(d.numOriginals); })
         .attr("width", x.bandwidth())
         .attr("height", function(d) { return height - y(d.numOriginals); })
-        .attr("fill", "#69b3a2")
+        .attr("fill", "#b3699a")
 
     // Features of the annotation
     const annotations = [
