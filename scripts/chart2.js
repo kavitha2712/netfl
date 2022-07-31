@@ -21,7 +21,7 @@ function getAndDrawData() {
   const parseDateTime = d3.timeParse("%B %d, %Y");
 
   // get data
-  const file = 'data/opioid_crisis.json';
+  const file = 'data/NetflixOriginals.json';
   d3.cachedJson(file, 'chart1', function(data) {
     data.forEach(function(d) {
       d.date = parseDateTime(d.Premiere);
