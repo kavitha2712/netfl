@@ -1,8 +1,8 @@
 charts.chart1 = function() {
   // initialise layout variables
   const margin = {top: 50, right: 20, bottom: 50, left: 60};
-  const width = 1250;
-  const height = 750;
+  const width = 800;
+  const height = 400;
 
   const parseDateTime = d3.timeParse("%B %d, %Y");
 
@@ -16,19 +16,20 @@ charts.chart1 = function() {
   // get data
   const file = 'data/opioid_crisis.json';
   d3.cachedJson(file, 'chart1', function(data) {
-//     data.forEach(function(d) {
-//       d.date = parseDateTime(d.Data[2][Year]);
-//     });
-//     data = data.filter(d => d.date != null);
-//     const finalData = data
-//     const dataGroupedByYear = Array.from(d3.group(data, d => d.date.getFullYear()));
-//     const finalData = dataGroupedByYear.map(
-//         function (item) {
-//           return {
-//             year: item[0],
-//             numOriginals: item[1].length
-//           };
-//         }
+    data.forEach(function(d) {
+      d.date = parseDateTime(d.Total_Deaths_2019);
+    });
+    data = data.filter(d => d.date != null);
+    const finalData = data
+    const dataGroupedByRegion = Array.from(d3.group(data, d => d.US_Regions));
+    const finalData = dataGroupedByRegion.map(
+        function (item) {
+          return {
+            region: item[0],
+            //ToDo change metrics
+            numOriginals: item[1].length
+          };
+        }
 //     ).sort((a, b) => (a.year > b.year) ? 1 : -1);
 
     draw(data);
@@ -39,7 +40,7 @@ charts.chart1 = function() {
     const x = d3.scaleBand()
         .range([0, width])
         .domain(data.map(function (d) {
-          return d.US_Regions;
+          return d.region;
         }))
         .padding(0.2);
     svg.append("g")
@@ -61,10 +62,10 @@ charts.chart1 = function() {
         .data(data)
         .enter()
         .append("rect")
-        .attr("x", function(d) { return x(d.US_Regions); })
-        .attr("y", function(d) { return y(d.Total_Deaths_2019); })
+        .attr("x", function(d) { return x(d.region); })
+        .attr("y", function(d) { return y(d.numOriginals); })
         .attr("width", x.bandwidth())
-        .attr("height", function(d) { return height - y(d.Total_Deaths_2019); })
+        .attr("height", function(d) { return height - y(d.numOriginals); })
         .attr("fill", "#b3699a")
 
     // Features of the annotation
