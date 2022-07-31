@@ -14,13 +14,13 @@ charts.chart1 = function() {
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
   // get data
-  const file = 'data/Opioid-crisis-data.json';
+  const file = 'data/opioid_crisis.json';
   d3.cachedJson(file, 'chart1', function(data) {
-    data.forEach(function(d) {
-      d.date = parseDateTime(d.Data[2][Year]);
-    });
-    data = data.filter(d => d.date != null);
-    const finalData = data
+//     data.forEach(function(d) {
+//       d.date = parseDateTime(d.Data[2][Year]);
+//     });
+//     data = data.filter(d => d.date != null);
+//     const finalData = data
 //     const dataGroupedByYear = Array.from(d3.group(data, d => d.date.getFullYear()));
 //     const finalData = dataGroupedByYear.map(
 //         function (item) {
@@ -31,7 +31,7 @@ charts.chart1 = function() {
 //         }
 //     ).sort((a, b) => (a.year > b.year) ? 1 : -1);
 
-    draw(finalData);
+    draw(data);
   });
 
   function draw(data) {
@@ -62,9 +62,9 @@ charts.chart1 = function() {
         .enter()
         .append("rect")
         .attr("x", function(d) { return x(d.US_Regions); })
-        .attr("y", function(d) { return y(d.Data[2][TotalDeaths]); })
+        .attr("y", function(d) { return y(d.Total_Deaths_2019); })
         .attr("width", x.bandwidth())
-        .attr("height", function(d) { return height - y(d.Data[2][TotalDeaths]); })
+        .attr("height", function(d) { return height - y(d.Total_Deaths_2019); })
         .attr("fill", "#b3699a")
 
     // Features of the annotation
