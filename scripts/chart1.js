@@ -29,7 +29,7 @@ charts.chart1 = function() {
             region: item[0],
             //ToDo change metrics
             //numOriginals: item[1].length
-             numDeaths: sumDeaths
+             numDeaths: sumDeaths / item[1].length
           };
         }
     ).sort()
