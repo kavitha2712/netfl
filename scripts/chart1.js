@@ -17,18 +17,19 @@ charts.chart1 = function() {
   const file = 'data/Opioid-crisis-data.json';
   d3.cachedJson(file, 'chart1', function(data) {
     data.forEach(function(d) {
-      d.date = parseDateTime(d.Premiere);
+      d.date = parseDateTime(d.Data[2][Year]);
     });
     data = data.filter(d => d.date != null);
-    const dataGroupedByYear = Array.from(d3.group(data, d => d.date.getFullYear()));
-    const finalData = dataGroupedByYear.map(
-        function (item) {
-          return {
-            year: item[0],
-            numOriginals: item[1].length
-          };
-        }
-    ).sort((a, b) => (a.year > b.year) ? 1 : -1);
+    const finalData = data
+//     const dataGroupedByYear = Array.from(d3.group(data, d => d.date.getFullYear()));
+//     const finalData = dataGroupedByYear.map(
+//         function (item) {
+//           return {
+//             year: item[0],
+//             numOriginals: item[1].length
+//           };
+//         }
+//     ).sort((a, b) => (a.year > b.year) ? 1 : -1);
 
     draw(finalData);
   });
@@ -38,7 +39,7 @@ charts.chart1 = function() {
     const x = d3.scaleBand()
         .range([0, width])
         .domain(data.map(function (d) {
-          return d.year;
+          return d.US_Regions;
         }))
         .padding(0.2);
     svg.append("g")
@@ -50,7 +51,7 @@ charts.chart1 = function() {
 
     // Add Y axis
     const y = d3.scaleLinear()
-        .domain([0, 200])
+        .domain([0, 1000])
         .range([height, 0]);
     svg.append("g")
         .call(d3.axisLeft(y));
@@ -60,47 +61,47 @@ charts.chart1 = function() {
         .data(data)
         .enter()
         .append("rect")
-        .attr("x", function(d) { return x(d.year); })
-        .attr("y", function(d) { return y(d.numOriginals); })
+        .attr("x", function(d) { return x(d.US_Regions); })
+        .attr("y", function(d) { return y(d.Data[2][TotalDeaths]); })
         .attr("width", x.bandwidth())
-        .attr("height", function(d) { return height - y(d.numOriginals); })
+        .attr("height", function(d) { return height - y(d.Data[2][TotalDeaths]); })
         .attr("fill", "#b3699a")
 
     // Features of the annotation
-    const annotations = [
-      {
-        note: {
-          label: "Starts producing"
-        },
-        connector: {
-          end: "arrow"
-        },
-        type: d3.annotationLabel,
-        x: 125,
-        y: 450,
-        dx: 0,
-        dy: -25
-      },
-      {
-        note: {
-          label: "Peak so far"
-        },
-        connector: {
-          end: "arrow"
-        },
-        type: d3.annotationLabel,
-        x: 545,
-        y: 85,
-        dx: 0,
-        dy: -25
-      }
-    ]
+//     const annotations = [
+//       {
+//         note: {
+//           label: "Starts producing"
+//         },
+//         connector: {
+//           end: "arrow"
+//         },
+//         type: d3.annotationLabel,
+//         x: 125,
+//         y: 450,
+//         dx: 0,
+//         dy: -25
+//       },
+//       {
+//         note: {
+//           label: "Peak so far"
+//         },
+//         connector: {
+//           end: "arrow"
+//         },
+//         type: d3.annotationLabel,
+//         x: 545,
+//         y: 85,
+//         dx: 0,
+//         dy: -25
+//       }
+//     ]
 
     // Add annotation to the chart
-    const makeAnnotations = d3.annotation()
-        .annotations(annotations)
-    d3.select("#svg1")
-        .append("g")
-        .call(makeAnnotations)
+//     const makeAnnotations = d3.annotation()
+//         .annotations(annotations)
+//     d3.select("#svg1")
+//         .append("g")
+//         .call(makeAnnotations)
   }
 }
