@@ -23,10 +23,13 @@ charts.chart1 = function() {
     const dataGroupedByRegion = Array.from(d3.group(data, d => d.US_Regions));
     const finalData = dataGroupedByRegion.map(
         function (item) {
+           var sumDeaths = 0;
+           item[1].forEach(d => sumDeaths += d["Total_Deaths_2019"]);
           return {
             region: item[0],
             //ToDo change metrics
-            numOriginals: item[1].length
+            //numOriginals: item[1].length
+             numOriginals: sumDeaths
           };
         }
     ).sort()
