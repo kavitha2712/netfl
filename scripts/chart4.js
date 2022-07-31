@@ -25,7 +25,7 @@ function getDataAndDraw() {
         data.forEach(function(d) {
             d.date = d.Total_Deaths_2019;
         });
-//         data = data.filter(d => d.date != null);
+        data = data.filter(d => d.date != null);
 //         data.forEach(function(d) {
 //             d.year = d.date.getFullYear();
 //         });
