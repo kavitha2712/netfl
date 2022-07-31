@@ -132,10 +132,10 @@ a {
 }
 
 .fp-controlArrow.fp-prev {
-  border-color: transparent blue transparent transparent;
+  border-color: transparent #15A6EE transparent transparent;
 }
 .fp-controlArrow.fp-next {
-  border-color: transparent transparent transparent blue;
+  border-color: transparent transparent transparent #15A6EE;
 }
 
 .section-1-button{
