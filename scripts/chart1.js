@@ -20,7 +20,7 @@ charts.chart1 = function() {
       d.date = d.Total_Deaths_2019;
     });
     data = data.filter(d => d.date != null);
-    const dataGroupedByRegion = Array.from(d3.group(data, d => d.US_Regions));
+    const dataGroupedByRegion = Array.from(d3.group(data, d => d["US_Regions"]));
     const finalData = dataGroupedByRegion.map(
         function (item) {
            var sumDeaths = 0;
@@ -29,7 +29,7 @@ charts.chart1 = function() {
             region: item[0],
             //ToDo change metrics
             //numOriginals: item[1].length
-             numOriginals: sumDeaths
+             numDeaths: sumDeaths
           };
         }
     ).sort()
@@ -66,9 +66,9 @@ charts.chart1 = function() {
         .enter()
         .append("rect")
         .attr("x", function(d) { return x(d.region); })
-        .attr("y", function(d) { return y(d.numOriginals); })
+        .attr("y", function(d) { return y(d.numDeaths); })
         .attr("width", x.bandwidth())
-        .attr("height", function(d) { return height - y(d.numOriginals); })
+        .attr("height", function(d) { return height - y(d.numDeaths); })
         .attr("fill", "#69b3a2")
 
     // Features of the annotation
