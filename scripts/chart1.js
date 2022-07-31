@@ -73,40 +73,40 @@ charts.chart1 = function() {
         .attr("fill", "#69b3a2")
 
     // Features of the annotation
-//     const annotations = [
-// //       {
-// //         note: {
-// //           label: "Starts producing"
-// //         },
-// //         connector: {
-// //           end: "arrow"
-// //         },
-// //         type: d3.annotationLabel,
-// //         x: 125,
-// //         y: 450,
-// //         dx: 0,
-// //         dy: -25
-// //       },
-//       {
-//         note: {
-//           label: "Higher Average Death rate"
-//         },
-//         connector: {
-//           end: "arrow"
-//         },
-//         type: d3.annotationLabel,
-//         x: 445,
-//         y: 320,
-//         dx: 0,
-//         dy: -25
-//       }
-//     ]
+    const annotations = [
+      {
+        note: {
+          label: "Starts producing"
+        },
+        connector: {
+          end: "arrow"
+        },
+        type: d3.annotationLabel,
+        x: 125,
+        y: 450,
+        dx: 0,
+        dy: -25
+      },
+      {
+        note: {
+          label: "Peak so far"
+        },
+        connector: {
+          end: "arrow"
+        },
+        type: d3.annotationLabel,
+        x: 545,
+        y: 85,
+        dx: 0,
+        dy: -25
+      }
+    ]
 
-//     // Add annotation to the chart
-//     const makeAnnotations = d3.annotation()
-//         .annotations(annotations)
-//     d3.select("#svg1")
-//         .append("g")
-//         .call(makeAnnotations)
+    // Add annotation to the chart
+    const makeAnnotations = d3.annotation()
+        .annotations(annotations)
+    d3.select("#svg1")
+        .append("g")
+        .call(makeAnnotations)
   }
 }
