@@ -74,7 +74,7 @@ charts.chart1 = function() {
 
     // Features of the annotation
     const annotations = [
-      {
+//       {
 //         note: {
 //           label: "Starts producing"
 //         },
@@ -103,10 +103,10 @@ charts.chart1 = function() {
     ]
 
     // Add annotation to the chart
-//     const makeAnnotations = d3.annotation()
-//         .annotations(annotations)
-//     d3.select("#svg1")
-//         .append("g")
-//         .call(makeAnnotations)
+    const makeAnnotations = d3.annotation()
+        .annotations(annotations)
+    d3.select("#svg1")
+        .append("g")
+        .call(makeAnnotations)
   }
 }
