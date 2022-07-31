@@ -7,10 +7,6 @@ pre, form, fieldset, input, textarea, p, blockquote, th, td {
   margin: 0;
 }
 
-body {
-  background-color: #F5EEF8;
-}
-
 a {
   text-decoration: none;
 }
@@ -120,7 +116,7 @@ a {
   background: #D6EAF8;
   border-radius: 5px;
   display: block;
-  color: #D1F2EB;
+  color: #0A2C25;
   text-align: center;
 }
 
