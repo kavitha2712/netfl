@@ -20,7 +20,7 @@ function getDataAndDraw() {
     const parseDateTime = d3.timeParse("%B %d, %Y");
 
     // get data
-    const file = 'data/opioid_crisis.json';
+    const file = 'data/top_states.json';
     d3.cachedJson(file, 'chart1', function(data) {
         data.forEach(function(d) {
             d.date = d.Total_Deaths_2019;
@@ -36,14 +36,14 @@ function getDataAndDraw() {
             }
         });
 
-        const dataGroupedByRegion = Array.from(d3.group(data, d => d["State Code"]));
+        const dataGroupedByRegion = Array.from(d3.group(data, d => d["Drug_type"]));
         finalDataChart4 = dataGroupedByRegion.map(
             function (item) {
                 var sumDeaths = 0;
-                item[1].forEach(d => sumDeaths += d["Total_Deaths_2019"]);
+                item[1].forEach(d => sumDeaths += d["Deaths_by_drug_2019"]);
                 return {
-                    state: item[0],
-                    numDeaths: sumDeaths / item[1].length
+                    drug: item[0],
+                    numDeaths: sumDeaths
                     
                 };
             }
@@ -62,7 +62,7 @@ function drawChart4(data) {
     const x = d3.scaleBand()
         .range([0, widthChart4])
         .domain(data.map(function (d) {
-            return d.state;
+            return d.drug;
         }))
         .padding(0.2);
     svgChart4.append("g")
@@ -74,7 +74,7 @@ function drawChart4(data) {
 
     // Add Y axis
     const y = d3.scaleLinear()
-        .domain([0, 5400])
+        .domain([0, 3000])
         .range([heightChart4, 0]);
     svgChart4.append("g")
         .call(d3.axisLeft(y));
@@ -84,11 +84,11 @@ function drawChart4(data) {
         .data(data)
         .enter()
         .append("rect")
-        .attr("x", function(d) { return x(d.state); })
+        .attr("x", function(d) { return x(d.drug); })
         .attr("y", function(d) { return y(d.numDeaths); })
         .attr("width", x.bandwidth())
         .attr("height", function(d) { return heightChart4 - y(d.numDeaths); })
-        .attr("fill", "#965086");
+        .attr("fill", "#85182c");
 }
 
 const paramsChart4 = [
