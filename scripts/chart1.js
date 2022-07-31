@@ -84,9 +84,9 @@ charts.chart1 = function() {
         },
         type: d3.annotationLabel,
         x: 445,
-        y: 100,
+        y: 110,
         dx: 0,
-        dy: 0
+        dy: -25
       }
     ]
 
