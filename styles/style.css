@@ -59,8 +59,8 @@ abbr, acronym {
 
 body {
   font-family: arial, helvetica;
-  color: #333333;
-  color: rgba(0, 0, 0, 0.5);
+  color: #D5F5E3;
+  color: rgba(213, 245, 227, 0.5);
 }
 
 .wrap {
