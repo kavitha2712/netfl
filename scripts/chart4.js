@@ -21,7 +21,7 @@ function getDataAndDraw() {
 
     // get data
     const file = 'data/top_states.json';
-    d3.cachedJson(file, 'chart1', function(data) {
+    d3.cachedJson(file, 'chart2', function(data) {
 //         data.forEach(function(d) {
 //             d.date = d.Total_Deaths_2019;
 //         });
