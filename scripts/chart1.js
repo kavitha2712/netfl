@@ -70,33 +70,33 @@ charts.chart1 = function() {
         .attr("width", x.bandwidth())
         .attr("height", function(d) { return height - y(d.numDeaths); })
 //         .attr("height",  y.bandwidth())
-        .attr("fill", "#8e69b3")
+        .attr("fill", "#69b3a2")
 
     // Features of the annotation
     const annotations = [
       {
         note: {
-          label: "Starts producing"
+          label: "Comparatively lower deaths in west region"
         },
         connector: {
           end: "arrow"
         },
         type: d3.annotationLabel,
         x: 125,
-        y: 450,
+        y: 65,
         dx: 0,
         dy: -25
       },
       {
         note: {
-          label: "Peak so far"
+          label: "Peak deaths in this north east region"
         },
         connector: {
           end: "arrow"
         },
         type: d3.annotationLabel,
-        x: 545,
-        y: 85,
+        x: 500,
+        y: 100,
         dx: 0,
         dy: -25
       }
