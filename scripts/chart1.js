@@ -70,7 +70,7 @@ charts.chart1 = function() {
         .attr("width", x.bandwidth())
         .attr("height", function(d) { return height - y(d.numDeaths); })
 //         .attr("height",  y.bandwidth())
-        .attr("fill", "#69b3a2")
+        .attr("fill", "#6997b3")
 
     // Features of the annotation
     const annotations = [
@@ -83,8 +83,8 @@ charts.chart1 = function() {
           end: "arrow"
         },
         type: d3.annotationLabel,
-        x: 420,
-        y: 75,
+        x: 445,
+        y: 45,
         dx: 0,
         dy: -25
       }
