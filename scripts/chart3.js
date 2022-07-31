@@ -20,33 +20,35 @@ function getDataAndDraw() {
     const parseDateTime = d3.timeParse("%B %d, %Y");
 
     // get data
-    const file = 'data/NetflixOriginals.json';
+    const file = 'data/opioid_crisis.json';
     d3.cachedJson(file, 'chart1', function(data) {
         data.forEach(function(d) {
-            d.date = parseDateTime(d.Premiere);
+            d.date = d.Total_Deaths_2019;
         });
         data = data.filter(d => d.date != null);
-        data.forEach(function(d) {
-            d.year = d.date.getFullYear();
-        });
+//         data.forEach(function(d) {
+//             d.year = d.date.getFullYear();
+//         });
 
         paramsChart3.forEach(function(param) {
             if (!d3.select(param.id).property('checked')) {
-                data = data.filter(d => d.year != param.year);
+                data = data.filter(d => d.US_Regions != param.region);
             }
         });
 
-        const dataGroupedByGenre = Array.from(d3.group(data, d => d["Genre"]));
-        finalDataChart3 = dataGroupedByGenre.map(
+        const dataGroupedByRegion = Array.from(d3.group(data, d => d["State Code"]));
+        finalDataChart3 = dataGroupedByRegion.map(
             function (item) {
-                var sumScores = 0;
-                item[1].forEach(d => sumScores += d["IMDB Score"]);
+                var sumDeaths = 0;
+                item[1].forEach(d => sumDeaths += d["Total_Deaths_2019"]);
                 return {
-                    genre: item[0],
-                    averageScore: sumScores / item[1].length
+                    state: item[0],
+                    numDeaths: sumDeaths / item[1].length
+                    
                 };
             }
-        ).sort((a, b) => (a.genre > b.genre) ? 1 : -1);
+           ).sort()
+//         ).sort((a, b) => (a.genre > b.genre) ? 1 : -1);
 
         drawChart3(finalDataChart3);
     });
@@ -60,7 +62,7 @@ function drawChart3(data) {
     const x = d3.scaleBand()
         .range([0, widthChart3])
         .domain(data.map(function (d) {
-            return d.genre;
+            return d.state;
         }))
         .padding(0.2);
     svgChart3.append("g")
@@ -72,7 +74,7 @@ function drawChart3(data) {
 
     // Add Y axis
     const y = d3.scaleLinear()
-        .domain([0, 7])
+        .domain([0, 1000])
         .range([heightChart3, 0]);
     svgChart3.append("g")
         .call(d3.axisLeft(y));
@@ -82,45 +84,29 @@ function drawChart3(data) {
         .data(data)
         .enter()
         .append("rect")
-        .attr("x", function(d) { return x(d.genre); })
-        .attr("y", function(d) { return y(d.averageScore); })
+        .attr("x", function(d) { return x(d.state); })
+        .attr("y", function(d) { return y(d.numDeaths); })
         .attr("width", x.bandwidth())
-        .attr("height", function(d) { return heightChart3 - y(d.averageScore); })
-        .attr("fill", "#69b3a2");
+        .attr("height", function(d) { return heightChart3 - y(d.numDeaths); })
+        .attr("fill", "#965086");
 }
 
 const paramsChart3 = [
     {
-        id: "#checkbox-2014",
-        year: 2014
+        id: "#checkbox-South",
+        region: "South"
     },
     {
-        id: "#checkbox-2015",
-        year: 2015
+        id: "#checkbox-West",
+        region: "West"
     },
     {
-        id: "#checkbox-2016",
-        year: 2016
+        id: "#checkbox-Midwest",
+        region: "Midwest"
     },
     {
-        id: "#checkbox-2017",
-        year: 2017
-    },
-    {
-        id: "#checkbox-2018",
-        year: 2018
-    },
-    {
-        id: "#checkbox-2019",
-        year: 2019
-    },
-    {
-        id: "#checkbox-2020",
-        year: 2020
-    },
-    {
-        id: "#checkbox-2021",
-        year: 2021
+        id: "#checkbox-Northeast",
+        region: "Northeast"
     },
 ];
 function updateChart3Data() {
