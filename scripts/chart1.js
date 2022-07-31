@@ -77,14 +77,14 @@ charts.chart1 = function() {
       
       {
         note: {
-          label: "Highest average deaths by drug overdose"
+          label: "Most impacted region in US"
         },
         connector: {
           end: "arrow"
         },
         type: d3.annotationLabel,
         x: 445,
-        y: 65,
+        y: 85,
         dx: 0,
         dy: 0
       }
