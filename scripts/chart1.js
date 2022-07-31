@@ -68,7 +68,8 @@ charts.chart1 = function() {
         .attr("x", function(d) { return x(d.region); })
         .attr("y", function(d) { return y(d.numDeaths); })
         .attr("width", x.bandwidth())
-        .attr("height", function(d) { return height - y(d.numDeaths); })
+//         .attr("height", function(d) { return height - y(d.numDeaths); })
+        .attr("height",  y.bandwidth())
         .attr("fill", "#69b3a2")
 
     // Features of the annotation
