@@ -16,10 +16,10 @@ charts.chart1 = function() {
   // get data
   const file = 'data/opioid_crisis.json';
   d3.cachedJson(file, 'chart1', function(data) {
-//     data.forEach(function(d) {
-//       d.date = parseDateTime(d.Total_Deaths_2019);
-//     });
-//     data = data.filter(d => d.date != null);
+    data.forEach(function(d) {
+      d.date = parseDateTime(d.Total_Deaths_2019);
+    });
+    data = data.filter(d => d.date != null);
     const dataGroupedByRegion = Array.from(d3.group(data, d => d.US_Regions));
     const finalData = dataGroupedByRegion.map(
         function (item) {
@@ -29,7 +29,7 @@ charts.chart1 = function() {
             numOriginals: item[1].length
           };
         }
-//     ).sort((a, b) => (a.year > b.year) ? 1 : -1);
+    ).sort((a, b) => (a.region > b.region) ? 1 : -1);
 
     draw(finalData);
   });
@@ -51,7 +51,7 @@ charts.chart1 = function() {
 
     // Add Y axis
     const y = d3.scaleLinear()
-        .domain([0, 5000])
+        .domain([0, 200])
         .range([height, 0]);
     svg.append("g")
         .call(d3.axisLeft(y));
@@ -63,9 +63,9 @@ charts.chart1 = function() {
         .append("rect")
         .attr("x", function(d) { return x(d.region); })
         .attr("y", function(d) { return y(d.numOriginals); })
-        .attr("width", function(d) { return width;})
+        .attr("width", x.bandwidth())
         .attr("height", function(d) { return height - y(d.numOriginals); })
-        .attr("fill", "#b3699a")
+        .attr("fill", "#69b3a2")
 
     // Features of the annotation
 //     const annotations = [
