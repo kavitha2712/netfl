@@ -70,11 +70,11 @@ charts.chart1 = function() {
         .attr("width", x.bandwidth())
         .attr("height", function(d) { return height - y(d.numDeaths); })
 //         .attr("height",  y.bandwidth())
-        .attr("fill", "#69b3a2")
+        .attr("fill", "#8e69b3")
 
     // Features of the annotation
-//     const annotations = [
-//       {
+    const annotations = [
+      {
 //         note: {
 //           label: "Starts producing"
 //         },
@@ -87,20 +87,20 @@ charts.chart1 = function() {
 //         dx: 0,
 //         dy: -25
 //       },
-//       {
-//         note: {
-//           label: "Peak so far"
-//         },
-//         connector: {
-//           end: "arrow"
-//         },
-//         type: d3.annotationLabel,
-//         x: 545,
-//         y: 85,
-//         dx: 0,
-//         dy: -25
-//       }
-//     ]
+      {
+        note: {
+          label: "Higher Average Death rate"
+        },
+        connector: {
+          end: "arrow"
+        },
+        type: d3.annotationLabel,
+        x: 445,
+        y: 320,
+        dx: 0,
+        dy: -25
+      }
+    ]
 
     // Add annotation to the chart
 //     const makeAnnotations = d3.annotation()
