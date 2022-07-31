@@ -1,7 +1,7 @@
 charts.chart1 = function() {
   // initialise layout variables
   const margin = {top: 50, right: 20, bottom: 50, left: 60};
-  const width = 800;
+  const width = 600;
   const height = 400;
 
   const parseDateTime = d3.timeParse("%B %d, %Y");
@@ -16,11 +16,10 @@ charts.chart1 = function() {
   // get data
   const file = 'data/opioid_crisis.json';
   d3.cachedJson(file, 'chart1', function(data) {
-    data.forEach(function(d) {
-      d.date = parseDateTime(d.Total_Deaths_2019);
-    });
-    data = data.filter(d => d.date != null);
-    const finalData = data
+//     data.forEach(function(d) {
+//       d.date = parseDateTime(d.Total_Deaths_2019);
+//     });
+//     data = data.filter(d => d.date != null);
     const dataGroupedByRegion = Array.from(d3.group(data, d => d.US_Regions));
     const finalData = dataGroupedByRegion.map(
         function (item) {
@@ -32,7 +31,7 @@ charts.chart1 = function() {
         }
 //     ).sort((a, b) => (a.year > b.year) ? 1 : -1);
 
-    draw(data);
+    draw(finalData);
   });
 
   function draw(data) {
@@ -64,7 +63,7 @@ charts.chart1 = function() {
         .append("rect")
         .attr("x", function(d) { return x(d.region); })
         .attr("y", function(d) { return y(d.numOriginals); })
-        .attr("width", x.bandwidth())
+        .attr("width", function(d) { return width;})
         .attr("height", function(d) { return height - y(d.numOriginals); })
         .attr("fill", "#b3699a")
 
