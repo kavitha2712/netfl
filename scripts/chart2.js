@@ -32,11 +32,11 @@ function getDataAndDraw() {
 
         paramsChart2.forEach(function(param) {
             if (!d3.select(param.id).property('checked')) {
-                data = data.filter(d => d.State_code != param.statecd);
+                data = data.filter(d => d["State Code"] != param.statecd);
             }
         });
 
-        const dataGroupedByRegion = Array.from(d3.group(data, d => d["State"]));
+        const dataGroupedByRegion = Array.from(d3.group(data, d => d["State Code""]));
         finalDataChart2 = dataGroupedByRegion.map(
             function (item) {
                 var sumDeaths = 0;
