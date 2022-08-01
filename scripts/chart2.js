@@ -78,7 +78,7 @@ charts.chart2 = function() {
       
       {
         note: {
-          label: "Most impacted region in US"
+          label: "Most impacted State(by average deaths) in US-North East Region"
         },
         connector: {
           end: "arrow"
@@ -87,7 +87,7 @@ charts.chart2 = function() {
         x: 425,
         y: 80,
         dx: 0,
-        dy: -25
+        dy: 0
       }
     ]
 
