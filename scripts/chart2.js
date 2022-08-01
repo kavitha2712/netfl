@@ -30,7 +30,7 @@ function getDataAndDraw() {
 //             d.year = d.date.getFullYear();
 //         });
 
-        paramsChart2.forEach(function(param) {
+        params.forEach(function(param) {
             if (!d3.select(param.id).property('checked')) {
                 data = data.filter(d => d.US_Regions != param.region);
             }
@@ -91,7 +91,7 @@ function drawChart2(data) {
         .attr("fill", "#505996");
 }
 
-const paramsChart2 = [
+const params = [
     {
         id: "#checkbox-South",
         region: "South"
