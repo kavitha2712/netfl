@@ -32,7 +32,7 @@ function getDataAndDraw() {
 
         paramsChart2.forEach(function(param) {
             if (!d3.select(param.id).property('checked')) {
-                data = data.filter(d => d["State Code"] != param.statecd);
+                data = data.filter(d => d.State_code != param.statecd);
             }
         });
 
@@ -43,7 +43,7 @@ function getDataAndDraw() {
                 item[1].forEach(d => sumDeaths += d["Deaths_by_drug_2019"]);
                 return {
                     drug: item[0],
-                    numDeaths: sumDeaths / item[1].length
+                    numDeaths: sumDeaths 
                     
                 };
             }
