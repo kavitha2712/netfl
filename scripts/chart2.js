@@ -26,10 +26,10 @@ charts.chart2 = function() {
            var sumDeaths = 0;
            item[1].forEach(d => sumDeaths += d["Deaths_by_drug_2019"]);
           return {
-            region: item[0],
+            drug: item[0],
             //ToDo change metrics
             //numOriginals: item[1].length
-             numDeaths: sumDeaths / item[1].length
+             numVal: sumDeaths / item[1].length
           };
         }
     ).sort()
@@ -43,7 +43,7 @@ charts.chart2 = function() {
     const x = d3.scaleBand()
         .range([0, width])
         .domain(data.map(function (d) {
-          return d.region;
+          return d.drug;
         }))
         .padding(0.2);
     svg.append("g")
@@ -55,7 +55,7 @@ charts.chart2 = function() {
 
     // Add Y axis
     const y = d3.scaleLinear()
-        .domain([0, 2500])
+        .domain([0, 5000])
         .range([height, 0]);
     svg.append("g")
         .call(d3.axisLeft(y));
@@ -65,10 +65,10 @@ charts.chart2 = function() {
         .data(data)
         .enter()
         .append("rect")
-        .attr("x", function(d) { return x(d.region); })
-        .attr("y", function(d) { return y(d.numDeaths); })
+        .attr("x", function(d) { return x(d.drug); })
+        .attr("y", function(d) { return y(d.numVal); })
         .attr("width", x.bandwidth())
-        .attr("height", function(d) { return height - y(d.numDeaths); })
+        .attr("height", function(d) { return height - y(d.numVal); })
 //         .attr("height",  y.bandwidth())
         .attr("fill", "#965086")
 
