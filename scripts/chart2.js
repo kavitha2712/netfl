@@ -36,7 +36,7 @@ function getDataAndDraw() {
             }
         });
 
-        const dataGroupedByRegion = Array.from(d3.group(data, d => d["State Code""]));
+        const dataGroupedByRegion = Array.from(d3.group(data, d => d["State Code"]));
         finalDataChart2 = dataGroupedByRegion.map(
             function (item) {
                 var sumDeaths = 0;
