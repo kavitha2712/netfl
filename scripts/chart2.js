@@ -20,7 +20,7 @@ function getDataAndDraw() {
     const parseDateTime = d3.timeParse("%B %d, %Y");
 
     // get data
-    const file = 'data/top_states.json';
+    const file = 'data/opioid_crisis.json';
     d3.cachedJson(file, 'chart1', function(data) {
         data.forEach(function(d) {
             d.date = d.Total_Deaths_2019;
@@ -36,13 +36,13 @@ function getDataAndDraw() {
             }
         });
 
-        const dataGroupedByRegion = Array.from(d3.group(data, d => d["Drug_type"]));
+        const dataGroupedByRegion = Array.from(d3.group(data, d => d["State"]));
         finalDataChart2 = dataGroupedByRegion.map(
             function (item) {
                 var sumDeaths = 0;
-                item[1].forEach(d => sumDeaths += d["Deaths_by_drug_2019"]);
+                item[1].forEach(d => sumDeaths += d["Total_Deaths_2019"]);
                 return {
-                    drug: item[0],
+                    state: item[0],
                     numDeaths: sumDeaths 
                     
                 };
@@ -62,7 +62,7 @@ function drawChart2(data) {
     const x = d3.scaleBand()
         .range([0, widthChart2])
         .domain(data.map(function (d) {
-            return d.drug;
+            return d.state;
         }))
         .padding(0.2);
     svgChart2.append("g")
@@ -84,7 +84,7 @@ function drawChart2(data) {
         .data(data)
         .enter()
         .append("rect")
-        .attr("x", function(d) { return x(d.drug); })
+        .attr("x", function(d) { return x(d.state); })
         .attr("y", function(d) { return y(d.numDeaths); })
         .attr("width", x.bandwidth())
         .attr("height", function(d) { return heightChart2 - y(d.numDeaths); })
