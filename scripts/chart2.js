@@ -21,17 +21,21 @@ function getDataAndDraw() {
 
     // get data
     const file = 'data/top_states.json';
-    d3.cachedJson(file, 'chart5', function(data) {
-        data.forEach(function(d) {
-            d.date = d.Total_Deaths_2019;
-        });
-        data = data.filter(d => d.date != null);
+    var data;
+    d3.json(jsonFile).then((data) => {
+    this.data = data;
+    });
+//     d3.cachedJson(file, 'chart5', function(data) {
+//         data.forEach(function(d) {
+//             d.date = d.Total_Deaths_2019;
+//         });
+//         data = data.filter(d => d.date != null);
 //         data.forEach(function(d) {
 //             d.year = d.date.getFullYear();
 //         });
 
         paramsChart2.forEach(function(param) {
-            if (!d3.select(param.id).property('checked')) {
+            if (!d3.select('#' + param.id).property('checked')) {
                 data = data.filter(d => d["State Code"] != param.statecd);
             }
         });
