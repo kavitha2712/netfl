@@ -20,19 +20,17 @@ charts.chart2 = function() {
       d.date = d.Total_Deaths_2019;
     });
     data = data.filter(d => d.date != null);
-    const dataGroupedByRegion = Array.from(d3.group(data, d => d["US_Regions"]));
+    const dataGroupedByRegion = Array.from(d3.group(data, d => d["State Code"]));
     const finalData = dataGroupedByRegion.map(
         function (item) {
            var sumDeaths = 0;
            var sumHeroin = 0;
            item[1].forEach(d => sumDeaths += d["Total_Deaths_2019"]);
-           item[1].forEach(d => sumHeroin += d["Heroin_2019"]);
           return {
             region: item[0],
             //ToDo change metrics
             //numOriginals: item[1].length
-             numDeaths: sumDeaths / item[1].length,
-             numHeroin: sumHeroin / item[1].length
+             numDeaths: sumDeaths / item[1].length
           };
         }
     ).sort()
@@ -69,7 +67,7 @@ charts.chart2 = function() {
         .enter()
         .append("rect")
         .attr("x", function(d) { return x(d.region); })
-        .attr("y", function(d) { return y(d.numDeaths,d.numHeroin); })
+        .attr("y", function(d) { return y(d.numDeaths); })
         .attr("width", x.bandwidth())
         .attr("height", function(d) { return height - y(d.numDeaths); })
 //         .attr("height",  y.bandwidth())
