@@ -14,22 +14,25 @@ charts.chart2 = function() {
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
   // get data
-  const file = 'data/top_states.json';
-  d3.cachedJson(file, 'chart7', function(data) {
+  const file = 'data/opioid_crisis.json';
+  d3.cachedJson(file, 'chart1', function(data) {
     data.forEach(function(d) {
       d.date = d.Total_Deaths_2019;
     });
     data = data.filter(d => d.date != null);
-    const dataGroupedByRegion = Array.from(d3.group(data, d => d["Drug_type"]));
+    const dataGroupedByRegion = Array.from(d3.group(data, d => d["US_Regions"]));
     const finalData = dataGroupedByRegion.map(
         function (item) {
            var sumDeaths = 0;
-           item[1].forEach(d => sumDeaths += d["Deaths_by_drug_2019"]);
+           var sumHeroin = 0;
+           item[1].forEach(d => sumDeaths += d["Total_Deaths_2019"]);
+           item[1].forEach(d => sumHeroin += d["Heroin_2019"]);
           return {
-            drug: item[0],
+            region: item[0],
             //ToDo change metrics
             //numOriginals: item[1].length
-             numVal: sumDeaths / item[1].length
+             numDeaths: sumDeaths / item[1].length,
+             numHeroin: sumHeroin / item[1].length
           };
         }
     ).sort()
@@ -43,7 +46,7 @@ charts.chart2 = function() {
     const x = d3.scaleBand()
         .range([0, width])
         .domain(data.map(function (d) {
-          return d.drug;
+          return d.region;
         }))
         .padding(0.2);
     svg.append("g")
@@ -55,7 +58,7 @@ charts.chart2 = function() {
 
     // Add Y axis
     const y = d3.scaleLinear()
-        .domain([0, 5000])
+        .domain([0, 2500])
         .range([height, 0]);
     svg.append("g")
         .call(d3.axisLeft(y));
@@ -65,10 +68,10 @@ charts.chart2 = function() {
         .data(data)
         .enter()
         .append("rect")
-        .attr("x", function(d) { return x(d.drug); })
-        .attr("y", function(d) { return y(d.numVal); })
+        .attr("x", function(d) { return x(d.region); })
+        .attr("y", function(d) { return y(d.numDeaths,d.numHeroin); })
         .attr("width", x.bandwidth())
-        .attr("height", function(d) { return height - y(d.numVal); })
+        .attr("height", function(d) { return height - y(d.numDeaths); })
 //         .attr("height",  y.bandwidth())
         .attr("fill", "#965086")
 
