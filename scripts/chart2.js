@@ -20,7 +20,7 @@ charts.chart2 = function() {
       d.date = d.Total_Deaths_2019;
     });
     data = data.filter(d => d.US_Regions == "Northeast");
-    const dataGroupedByRegion = Array.from(d3.group(data, d => d["State Code"]));
+    const dataGroupedByRegion = Array.from(d3.group(data, d => d["State"]));
     const finalData = dataGroupedByRegion.map(
         function (item) {
            var sumDeaths = 0;
@@ -84,8 +84,8 @@ charts.chart2 = function() {
           end: "arrow"
         },
         type: d3.annotationLabel,
-        x: 445,
-        y: 110,
+        x: 425,
+        y: 80,
         dx: 0,
         dy: -25
       }
