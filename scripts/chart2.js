@@ -5,7 +5,7 @@ const widthChart2 = 600;
 const heightChart2 = 400;
 
 // initialise charts
-const svg = d3.select('#svg2')
+const svgChart2 = d3.select('#svg2')
     .attr('width', widthChart2 + marginChart2.left + marginChart2.right)
     .attr('height', heightChart2 + marginChart2.top + marginChart2.bottom)
     .append('g')
@@ -20,7 +20,7 @@ function getDataAndDraw() {
     const parseDateTime = d3.timeParse("%B %d, %Y");
 
     // get data
-    const file = 'data/opioid_crisis.json';
+    const file = 'data/top_states.json';
     d3.cachedJson(file, 'chart1', function(data) {
         data.forEach(function(d) {
             d.date = d.Total_Deaths_2019;
@@ -30,19 +30,19 @@ function getDataAndDraw() {
 //             d.year = d.date.getFullYear();
 //         });
 
-        params.forEach(function(param) {
+        paramsChart2.forEach(function(param) {
             if (!d3.select(param.id).property('checked')) {
-                data = data.filter(d => d.US_Regions != param.region);
+                data = data.filter(d => d["State Code"] != param.statecd);
             }
         });
 
-        const dataGroupedByRegion = Array.from(d3.group(data, d => d["State Code"]));
+        const dataGroupedByRegion = Array.from(d3.group(data, d => d["Drug_type"]));
         finalDataChart2 = dataGroupedByRegion.map(
             function (item) {
                 var sumDeaths = 0;
-                item[1].forEach(d => sumDeaths += d["Total_Deaths_2019"]);
+                item[1].forEach(d => sumDeaths += d["Deaths_by_drug_2019"]);
                 return {
-                    state: item[0],
+                    drug: item[0],
                     numDeaths: sumDeaths / item[1].length
                     
                 };
@@ -56,16 +56,16 @@ function getDataAndDraw() {
 
 function drawChart2(data) {
     d3.select('#svg-2-parent-g').selectAll('*').remove();
-    svg.selectAll('rect').remove();
+    svgChart2.selectAll('rect').remove();
 
     // X axis
     const x = d3.scaleBand()
         .range([0, widthChart2])
         .domain(data.map(function (d) {
-            return d.state;
+            return d.drug;
         }))
         .padding(0.2);
-    svg.append("g")
+    svgChart2.append("g")
         .attr("transform", "translate(0," + heightChart2 + ")")
         .call(d3.axisBottom(x))
         .selectAll("text")
@@ -74,40 +74,44 @@ function drawChart2(data) {
 
     // Add Y axis
     const y = d3.scaleLinear()
-        .domain([0, 6500])
+        .domain([0, 3000])
         .range([heightChart2, 0]);
-    svg.append("g")
+    svgChart2.append("g")
         .call(d3.axisLeft(y));
 
     // Bars
-    svg.selectAll("mybar")
+    svgChart2.selectAll("mybar")
         .data(data)
         .enter()
         .append("rect")
-        .attr("x", function(d) { return x(d.state); })
+        .attr("x", function(d) { return x(d.drug); })
         .attr("y", function(d) { return y(d.numDeaths); })
         .attr("width", x.bandwidth())
         .attr("height", function(d) { return heightChart2 - y(d.numDeaths); })
-        .attr("fill", "#505996");
+        .attr("fill", "#85182c");
 }
 
-const params = [
+const paramsChart2 = [
     {
-        id: "#checkbox-South",
-        region: "South"
+        id: "#checkbox-CA",
+        statecd: "CA"
     },
     {
-        id: "#checkbox-West",
-        region: "West"
+        id: "#checkbox-FL",
+        statecd: "FL"
     },
     {
-        id: "#checkbox-Midwest",
-        region: "Midwest"
+        id: "#checkbox-NY",
+        statecd: "NY"
     },
     {
-        id: "#checkbox-Northeast",
-        region: "Northeast"
+        id: "#checkbox-PA",
+        statecd: "PA"
     },
+    {
+        id: "#checkbox-OH",
+        statecd: "OH"
+    }
 ];
 function updateChart2Data() {
     getDataAndDraw();
