@@ -5,7 +5,7 @@ const widthChart2 = 600;
 const heightChart2 = 400;
 
 // initialise charts
-const svgChart2 = d3.select('#svg2')
+const svg = d3.select('#svg2')
     .attr('width', widthChart2 + marginChart2.left + marginChart2.right)
     .attr('height', heightChart2 + marginChart2.top + marginChart2.bottom)
     .append('g')
@@ -56,7 +56,7 @@ function getDataAndDraw() {
 
 function drawChart2(data) {
     d3.select('#svg-2-parent-g').selectAll('*').remove();
-    svgChart2.selectAll('rect').remove();
+    svg.selectAll('rect').remove();
 
     // X axis
     const x = d3.scaleBand()
@@ -65,7 +65,7 @@ function drawChart2(data) {
             return d.state;
         }))
         .padding(0.2);
-    svgChart2.append("g")
+    svg.append("g")
         .attr("transform", "translate(0," + heightChart2 + ")")
         .call(d3.axisBottom(x))
         .selectAll("text")
@@ -76,11 +76,11 @@ function drawChart2(data) {
     const y = d3.scaleLinear()
         .domain([0, 6500])
         .range([heightChart2, 0]);
-    svgChart2.append("g")
+    svg.append("g")
         .call(d3.axisLeft(y));
 
     // Bars
-    svgChart2.selectAll("mybar")
+    svg.selectAll("mybar")
         .data(data)
         .enter()
         .append("rect")
