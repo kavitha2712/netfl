@@ -19,7 +19,7 @@ charts.chart2 = function() {
     data.forEach(function(d) {
       d.date = d.Total_Deaths_2019;
     });
-    data = data.filter(d => d.date != null);
+    data = data.filter(d => d.US_Regions == "Northeast");
     const dataGroupedByRegion = Array.from(d3.group(data, d => d["State Code"]));
     const finalData = dataGroupedByRegion.map(
         function (item) {
@@ -56,7 +56,7 @@ charts.chart2 = function() {
 
     // Add Y axis
     const y = d3.scaleLinear()
-        .domain([0, 2500])
+        .domain([0, 6500])
         .range([height, 0]);
     svg.append("g")
         .call(d3.axisLeft(y));
@@ -71,7 +71,7 @@ charts.chart2 = function() {
         .attr("width", x.bandwidth())
         .attr("height", function(d) { return height - y(d.numDeaths); })
 //         .attr("height",  y.bandwidth())
-        .attr("fill", "#965086")
+        .attr("fill", "#851839")
 
     // Features of the annotation
     const annotations = [
