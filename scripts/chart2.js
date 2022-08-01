@@ -21,21 +21,17 @@ function getDataAndDraw() {
 
     // get data
     const file = 'data/top_states.json';
-    var data;
-    d3.json(jsonFile).then((data) => {
-    this.data = data;
-    });
-//     d3.cachedJson(file, 'chart5', function(data) {
-//         data.forEach(function(d) {
-//             d.date = d.Total_Deaths_2019;
-//         });
-//         data = data.filter(d => d.date != null);
+    d3.cachedJson(file, 'chart1', function(data) {
+        data.forEach(function(d) {
+            d.date = d.Total_Deaths_2019;
+        });
+        data = data.filter(d => d.date != null);
 //         data.forEach(function(d) {
 //             d.year = d.date.getFullYear();
 //         });
 
         paramsChart2.forEach(function(param) {
-            if (!d3.select('#' + param.id).property('checked')) {
+            if (!d3.select(param.id).property('checked')) {
                 data = data.filter(d => d["State Code"] != param.statecd);
             }
         });
@@ -92,7 +88,7 @@ function drawChart2(data) {
         .attr("y", function(d) { return y(d.numDeaths); })
         .attr("width", x.bandwidth())
         .attr("height", function(d) { return heightChart2 - y(d.numDeaths); })
-        .attr("fill", "#85182c");
+        .attr("fill", "#505996");
 }
 
 const paramsChart2 = [
